@@ -39,7 +39,7 @@ public class ConsumerContractTest {
         var pact = builder
                 .given("Product with ID 1 exists")
                 .uponReceiving("A request to get product with ID 1")
-                .path("/products/1")
+                .path("/api/products/1")
                 .method("GET")
                 .willRespondWith()
                 .status(200)
@@ -56,7 +56,7 @@ public class ConsumerContractTest {
     @PactTestFor(pactMethod = "createPact")
     public void testProductApi() throws IOException {
         var httpClient = HttpClientBuilder.create().build();
-        String apiUrl = "http://localhost:3001/products/1";
+        String apiUrl = "http://localhost:3001/api/products/1";
         HttpGet request = new HttpGet(apiUrl);
         var response = httpClient.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
